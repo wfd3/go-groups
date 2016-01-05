@@ -29,18 +29,18 @@ func convert(clist **C.char) []string {
 	return members
 }
 
-// Current returns the group information
+// Current returns the curreng  group information (from getgid())
 func Current() (*Group, error) {
 	return lookup(syscall.Getgid(), "", false)
 }
 
-// LookupId returns the group information by GID.  If the group cannot be found,
+// LookupId returns the group information for a specific GID.  If the group cannot be found,
 // the error UnknownGroupIdError is returned.
 func LookupId(gid int) (*Group, error) {
 	return lookup(gid, "", false)
 }
 
-// Lookup returns the group information by group name.  If the group cannot be
+// Lookup returns the group information for a specific group name.  If the group cannot be
 // found, the error UnknownGroupError is returned.
 func Lookup(groupname string) (*Group, error) {
 	return lookup(-1, groupname, true)
